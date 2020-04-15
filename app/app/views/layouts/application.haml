@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title ToDo212
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+      %a.navbar-brand{ href: "#" }
+        ToDo212
+      %ul.navbar-nav.mr-auto
+        %li.nav-item
+          =link_to 'Tasks', tasks_path, { class: "nav-link" }
+      %ul.navbar-nav.ml-auto
+        %li.nav-item
+          - caption, path = get_current_user.nil? ? ['Login', login_path] : ["Logout (#{get_current_user.name})", logout_path]
+          =link_to caption, path, { class: "nav-link" }
+    .container
+      - flash.each do |key, value| 
+        %div{ class: "#{get_flash_bootstrap_class key}" }= value
+      =yield

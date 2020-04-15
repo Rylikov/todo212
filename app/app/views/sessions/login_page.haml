@@ -1,0 +1,9 @@
+%h1 Login please:
+= form_tag "/login", method: "post" do
+  .form-group
+    = label_tag "login", "Login:"
+    %input.form-control#login{ name: "login", type: :text }
+    = label_tag "password", "Password:"
+    %input.form-control#password{ name: "password", type: :password }
+  = submit_tag "Enter", class: "btn btn-primary"
+

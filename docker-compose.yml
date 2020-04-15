@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  dive_in_rails:
+    build:
+      context: services/app
+      dockerfile: Dockerfile.development
+    env_file: ".env"
+    command: /bin/sh
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./services/app:/app:cached"
+      #- "~/.bash_history:/root/.bash_history:cached"
+      - "/var/tmp:/var/tmp:cached"
+      - "/tmp:/tmp:cached"

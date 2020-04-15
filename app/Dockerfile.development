@@ -1,0 +1,24 @@
+FROM ruby:2.5-alpine
+
+RUN apk update && apk add --no-cache \
+	sqlite \
+	sqlite-dev \
+	build-base \
+        libxml2 \
+	libxml2-dev \ 
+        libxslt \
+        libxslt-dev \
+	nodejs-current
+
+ARG USER
+ARG UID
+
+RUN addgroup -g 1000 ${USER} && adduser -h /app -G ${USER} -D -H -u ${UID} ${USER}
+
+ENV PROJECT_ROOT /app
+ENV BUNDLE_PATH $PROJECT_ROOT/vendor/bundle
+ENV GEM_HOME $PROJECT_ROOT/vendor/bundle
+ENV PATH /app/vendor/bundle/bin:$PATH
+
+WORKDIR $PROJECT_ROOT
+

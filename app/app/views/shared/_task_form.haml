@@ -1,0 +1,8 @@
+.form-group
+= form_for @task do |f|
+  = f.label 'Task summary'
+  = f.text_field :summary, { class: "form-control" }
+  = f.label 'Status'
+  = f.select :status, [['New', :new], ['Done', :done]], { class: "form-control" }
+  = submit_tag "Add", class: "form-control btn btn-primary"
+
